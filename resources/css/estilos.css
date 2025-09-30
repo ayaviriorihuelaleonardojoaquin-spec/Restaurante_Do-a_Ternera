@@ -1,0 +1,8 @@
+.ri-eye-off-line {
+    font-size: 28px !important; /* o el tamaño que quieras */
+    color: red !important;      /* el color que quieras */
+}
+[class^="ri-"], [class*=" ri-"] {
+    font-size: 28px !important;
+    color: red !important;
+}
