@@ -4,10 +4,10 @@
     /* basic column chart */
     var options = {
         series: [{
-            name: 'Net Profit',
+            name: 'Perdida',
             data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
         }, {
-            name: 'Revenue',
+            name: 'Ganancia',
             data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
         }, {
             name: 'Free Cash Flow',
@@ -37,7 +37,7 @@
             colors: ['transparent']
         },
         xaxis: {
-            categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+            categories: ['Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
             labels: {
                 show: true,
                 style: {

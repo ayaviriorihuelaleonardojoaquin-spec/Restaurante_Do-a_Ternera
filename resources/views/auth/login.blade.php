@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
-@section('content')
-
-    <div class="auth-form">
+@section('content' )
+    
+    <div class="auth-form" style="background: linear-gradient(135deg, #a5a562ff, #914521ff); color: white; box-shadow: 0 4px 15px rgba(8, 3, 3, 0.3); border-radius: 1rem;">
 
         <div class="text-center mb-5">
             <img class="logo-abbr" src="{{ asset('images/logo.png') }}" alt="">
@@ -13,7 +13,8 @@
         
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <div class="form-group">
+            <hr class="my-1" style="border-color: rgba(255,255,255,0.2);">
+            <div class="form-group" >
                 <label for="email" class="mb-1"><strong>{{ __(key: 'Email') }}</strong></label>
                 <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}">
                 @error('email')
@@ -23,6 +24,7 @@
                 @enderror
                 
             </div>
+            
             <div class="form-group">
                 <label for="password" class="mb-1"><strong>{{ __(key: 'Password') }}</strong></label>
                 <input type="password" id="password" name="password" class="form-control" value="">
@@ -32,17 +34,20 @@
                     </div>
                 @enderror
             </div>
+            <hr class="my-1" style="border-color: rgba(255,255,255,0.2);">
             <div class="form-row d-flex justify-content-between mt-4 mb-2">
                 <div class="form-group">
                     <div class="custom-control custom-checkbox ml-1">
                         
                     </div>
                 </div>
+
                 <!--
                 <div class="form-group">
                     <a href="{{ route('password.request') }}">{{ __(key: 'Forgot your password?') }}</a>
                 </div>
                 -->
+                
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary btn-block">{{ __(key: 'Sign In') }}</button>
@@ -59,10 +64,10 @@
     }
     
 </style>
-    </div>
+    
     <div class="text-center mt-100">
     <small class="texto-grande">¿Eres nuevo?</small>
     <a href="{{ route('register') }}" class="fw-bold texto-grande"> Crear una cuenta</a>
-</div>
+
 
 @endsection

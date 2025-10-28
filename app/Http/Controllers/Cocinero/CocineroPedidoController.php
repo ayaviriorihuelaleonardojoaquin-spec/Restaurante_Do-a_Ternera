@@ -13,15 +13,18 @@ class CocineroPedidoController extends Controller
         // Traer los pedidos en estado pendiente o en preparación
         $pedidos = Pedido::whereIn('estado', ['pendiente', 'en preparación'])->get();
 
-        return view('cocinero.pedidos.index', compact('pedidos'));
+        return view('pedidos.index', compact('pedidos'));
     }
 
-    public function preparados($id)
+    public function preparados()
+{
+    $pedidos = Pedido::where('estado', 'en_proceso')->get();
+    return view('pedidos.preparados', compact('pedidos'));
+}
+public function historial()
     {
-        $pedido = Pedido::findOrFail($id);
-        $pedido->estado = 'preparado';
-        $pedido->save();
-
-        return redirect()->route('cocinero.pedidos.index')->with('success', 'Pedido marcado como preparado.');
+        $pedidos = Pedido::whereIn('estado', ['preparado', 'entregado'])->get();
+        return view('pedidos.historial', compact('pedidos'));
     }
+
 }

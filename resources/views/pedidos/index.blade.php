@@ -106,13 +106,23 @@
                                                 }}
                                             </td>
 
-                                            <td>
-                                                <a href="javascript:;" class="btn btn-danger btn-delete"
-                                                    data-id="{{ $pedido->id }}"
-                                                    data-name="Pedido #{{ $pedido->id }}"
-                                                    data-url="{{ route('pedidos.destroy', $pedido->id) }}">
-                                                    <i class="fa fa-trash"></i> Eliminar
-                                                </a>
+                                            <td class="d-flex flex-column gap-1">
+                                                {{-- Botón eliminar solo para admin/cajero --}}
+                                                
+                                                    <a href="javascript:;" class="btn btn-danger btn-delete mb-1"
+                                                       data-id="{{ $pedido->id }}"
+                                                       data-name="Pedido #{{ $pedido->id }}"
+                                                       data-url="{{ route('pedidos.destroy', $pedido->id) }}">
+                                                        <i class="fa fa-trash"></i> Eliminar
+                                                    </a>
+       
+
+                                                {{-- Botón editar solo para cocinero --}}
+                                                
+                                                    <a href="{{ route('pedidos.edit', $pedido->id) }}" class="btn btn-warning btn-sm">
+                                                        <i class="fa fa-edit"></i> Editar
+                                                    </a>
+                                                
                                             </td>
                                         </tr>
                                     @endforeach

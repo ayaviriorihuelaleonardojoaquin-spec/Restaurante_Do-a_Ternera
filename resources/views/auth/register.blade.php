@@ -1,15 +1,21 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="row justify-content-center authentication authentication-basic align-items-center h-100">
-    <div class="">
-        <div class="card custom-card">
+<div class="row justify-content-center authentication authentication-basic align-items-center h-100" >
+    <div class="" >
+        <div class="" style="background: linear-gradient(135deg, #a5a562ff, #914521ff); color: white; box-shadow: 0 4px 15px rgba(8, 3, 3, 0.3); border-radius: 1rem;">
             <div class="card-body p-5">
-                <p class="h5 fw-semibold mb-2 text-center">REGISTRARSE</p>
-                <p class="mb-4 text-muted op-7 fw-normal text-center">
+                <div class="text-center mb-5">
+            <img class="logo-abbr" src="{{ asset('images/logo.png') }}" alt="">
+            <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt="">
+        </div>
+        <p class="form-label text-default text-center">
                     ¡BIENVENIDO! ÚNETE CREANDO UNA CUENTA GRATUITA
                 </p>
-
+                <hr class="my-2" style="border-color: rgba(255,255,255,0.2);">
+        <p class="form-label text-default text-center">REGISTRARSE</p>
+                
+    
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
@@ -70,14 +76,14 @@
                             </button>
                         </div>
                     </div>
-
+ 
                     <!-- Términos y Condiciones -->
                     <div class="form-check mt-3">
-                        <input class="form-check-input" type="checkbox" id="defaultCheck1" required>
+                        
                         <label class="form-check-label text-muted fw-normal" for="defaultCheck1">
                             Al crear una cuenta, aceptas nuestros
-                            <a href="terms_conditions.html" class="text-success"><u>Términos y Condiciones</u></a>
-                            y la <a class="text-success"><u>Política de Privacidad</u></a>
+                            <a href="terms_conditions.html" class="text-success"><lavel>Términos y Condiciones</lavel></a>
+                            y la <a class="text-success"><lavel>Política de Privacidad</lavel></a>
                         </label>
                     </div>
 
@@ -86,13 +92,14 @@
                         <button type="submit" class="btn btn-lg btn-primary">Crear Cuenta</button>
                     </div>
                 </form>
-
+    <hr class="my-3" style="border-color: rgba(255,255,255,0.2);">
                 <!-- Enlace a login -->
                 <div class="text-center">
                     <p class="text-muted mt-3">
                         ¿Ya tienes una cuenta? <a href="{{ route('login') }}" class="text-primary">Iniciar Sesión</a>
                     </p>
                 </div>
+                
             </div>
         </div>
     </div>

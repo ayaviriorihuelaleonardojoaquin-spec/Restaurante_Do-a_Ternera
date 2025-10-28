@@ -41,12 +41,13 @@ class Pedido extends Model
         return $this->belongsTo(User::class, 'cliente_id');
     }
 
-    public function platos()
-    {
-        return $this->belongsToMany(Plato::class, 'pedido_plato');
-    }
+    
     public function factura()
 {
     return $this->hasOne(Factura::class);
+}
+public function platos()
+{
+    return $this->hasMany(DetallePedido::class);
 }
 }

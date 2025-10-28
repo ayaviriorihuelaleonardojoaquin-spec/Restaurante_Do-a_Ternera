@@ -1,1 +1,1 @@
-@extends('layouts.private')
+@extends('layouts.cliente')

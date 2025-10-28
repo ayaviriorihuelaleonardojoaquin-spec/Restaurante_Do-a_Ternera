@@ -151,12 +151,12 @@
 		var options = {
 			  series: [
 				{
-					name: 'Net Profit',
+					name: 'Ingreso',
 					data: [31, 40, 28, 51, 42, 109, 100],
 					//radius: 12,	
 				}, 
 				{
-				  name: 'Revenue',
+				  name: 'Gastos',
 				  data: [11, 32, 45, 32, 34, 52, 41]
 				}, 
 				
@@ -218,7 +218,7 @@
 			},
 			xaxis: {
 				
-			  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July'],
+			  categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
 			  labels: {
 				style: {
 					colors: '#3e4954',

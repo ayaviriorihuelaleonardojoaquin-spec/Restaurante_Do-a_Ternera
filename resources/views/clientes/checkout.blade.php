@@ -26,7 +26,7 @@
                     <td class="p-3">{{ $item['cantidad'] }}</td>
                     <td class="p-3">Bs. {{ number_format($item['precio'], 2) }}</td>
                     <td class="p-3">Bs. {{ number_format($subtotal, 2) }}</td>
-                    <td class="p-3">{{ $item['tipo'] ?? 'Mesa' }}</td> <!-- Muestra el tipo -->
+                    <td class="p-3">{{ $item['tipo'] ?? 'Para Llevar' }}</td> <!-- Muestra el tipo -->
                 </tr>
             @endforeach
         </tbody>

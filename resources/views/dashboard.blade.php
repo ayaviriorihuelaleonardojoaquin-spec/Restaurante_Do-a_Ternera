@@ -1,7 +1,7 @@
 @extends('layouts.private')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid" >
 				<div class="form-head d-flex mb-3 align-items-start">
 					<div class="mr-auto d-none d-lg-block">
 						<h2 class="text-black font-w600 mb-0">DOÑA TERNERA</h2>
@@ -25,7 +25,7 @@
 				</div>
                 <div class="row">
 					<div class="col-xl-3 col-xxl-3 col-lg-6 col-md-6 col-sm-6">
-						<div class="widget-stat card">
+						<div class="widget-stat card" style="background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; box-shadow: 0 4px 15px rgba(59,130,246,0.3); border-radius: 1rem;">
 							<div class="card-body p-4">
 								<div class="media ai-icon">
 									<span class="mr-3 bgl-primary text-primary">
@@ -43,7 +43,7 @@
 						</div>
 					</div>
 					<div class="col-xl-3 col-xxl-3 col-lg-6 col-md-6 col-sm-6">
-						<div class="widget-stat card">
+						<div class="widget-stat card" style="background: linear-gradient(135deg, #34d399, #059669); color: white; box-shadow: 0 4px 15px rgba(16,185,129,0.3); border-radius: 1rem;">
 							<div class="card-body p-4">
 								<div class="media ai-icon">
 									<span class="mr-3 bgl-primary text-primary">
@@ -60,7 +60,7 @@
 						</div>
 					</div>
 					<div class="col-xl-3 col-xxl-3 col-lg-6 col-md-6 col-sm-6">
-						<div class="widget-stat card">
+						<div class="widget-stat card" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; box-shadow: 0 4px 15px rgba(245,158,11,0.3); border-radius: 1rem;">
 							<div class="card-body p-4">
 								<div class="media ai-icon">
 									<span class="mr-3 bgl-primary text-primary">
@@ -77,7 +77,7 @@
 						</div>
 					</div>
 					<div class="col-xl-3 col-xxl-3 col-lg-6 col-md-6 col-sm-6">
-						<div class="widget-stat card">
+						<div class="widget-stat card" style="background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; box-shadow: 0 4px 15px rgba(239,68,68,0.3); border-radius: 1rem;">
 							<div class="card-body p-4">
 								<div class="media ai-icon">
 									<span class="mr-3 bgl-primary text-primary">
@@ -94,11 +94,12 @@
 						</div>
 					</div>
 					<div class="col-xl-6 col-xxl-6 col-lg-12 col-md-12">
-						<div class="card">
+						<div class="widget-stat card" style="background: linear-gradient(135deg, #e2dedeff, #b1c254ff); color: white; box-shadow: 0 4px 15px rgba(239,68,68,0.3); border-radius: 1rem;">
+
 							<div class="card-header border-0 pb-0 d-sm-flex d-block">
 								<div>
 									<h4 class="card-title mb-1">Resumen De Pedidos</h4>
-									<small class="mb-0">Lorem ipsum dolor sit amet, consectetur</small>
+									<small class="mb-0"></small>
 								</div>
 								<div class="card-action card-tabs mt-3 mt-sm-0">
 									<ul class="nav nav-tabs" role="tablist">
@@ -186,11 +187,14 @@
 						</div>
 					</div>
 					<div class="col-xl-6 col-xxl-6 col-lg-12 col-md-12">
-						<div class="card">
+							<div class="widget-stat card" style="background: linear-gradient(135deg, #efa544ff, #408badff); color: white; box-shadow: 0 4px 15px rgba(239,68,68,0.3); border-radius: 1rem;">
+
 							<div class="card-header border-0 pb-0 d-sm-flex d-block">
 								<div>
-									<h4 class="card-title mb-1">Ganancia</h4>
-									<small class="mb-0">Lorem ipsum dolor sit amet, consectetur</small>
+									<h4 class="card-title mb-1">Grafico de costos</h4>
+									<small class="mb-0">
+
+									</small>
 								</div>
 								<div class="dropdown mt-3 mt-sm-0">
 									<button type="button" class="btn btn-primary dropdown-toggle light fs-14" data-toggle="dropdown" aria-expanded="false">
@@ -225,11 +229,13 @@
 						</div>
 					</div>
 					<div class="col-xl-9 col-xxl-9 col-lg-8 col-md-12">
-						<div id="user-activity" class="card">
+						
+							<div class="widget-stat card" style="background: linear-gradient(135deg, #3d804bff, #84c587ff); color: white; box-shadow: 0 4px 15px rgba(239,68,68,0.3); border-radius: 1rem;">
+
 							<div class="card-header border-0 pb-0 d-sm-flex d-block">
 								<div>
-									<h4 class="card-title mb-1">Mapa Del Cliente</h4>
-									<small class="mb-0">Lorem Ipsum is simply dummy text of the printing</small>
+									<h4 class="card-title mb-1">Grafico De Ganacias</h4>
+									<small class="mb-0"></small>
 								</div>
 								<div class="card-action card-tabs mt-3 mt-sm-0">
 									<ul class="nav nav-tabs" role="tablist">
@@ -267,7 +273,7 @@
 
 								<h4 class="text-white mb-3">Administrar <br/>Panel Disposición</h4>
 								<a href="javascript:void(0);" class="d-flex text-light align-items-center justify-content-between">
-									<small>Lorem ipsum dolor sit amet, consectetur</small>
+									<small>Salir</small>
 									<i class="ti-arrow-right"></i>
 								</a>
 							</div>

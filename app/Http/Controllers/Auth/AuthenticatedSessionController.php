@@ -40,6 +40,8 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->route('cajero.index');
             } elseif ($user->rol?->nombre === 'Cliente') {
                 return redirect()->route('menu.index'); // Clientes van directo al menú
+            } elseif ($user->rol?->nombre === 'Cocinero') {
+                return redirect()->route('cocinero.index'); // Clientes van directo al menú
             }
 
             return redirect()->route('menu.index'); // fallback
@@ -73,7 +75,9 @@ class AuthenticatedSessionController extends Controller
         return redirect()->route('cajero.cobros.index');
     } elseif ($user->rol?->nombre === 'Cliente') {  // <- Asegúrate de que coincida exactamente
         return redirect()->route('menu.index');
-    }
+    } elseif ($user->rol?->nombre === 'Cocinero') {
+                return redirect()->route('cocinero.index'); // Clientes van directo al menú
+            }
 
     return redirect()->route('menu.index'); // fallback
 }
