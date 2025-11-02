@@ -19,6 +19,7 @@ class Pedido extends Model
         'nombre',
         'cliente_id',
         'estado',
+        'metodo_pago',
     ];
 
     public function mesa()
@@ -41,7 +42,10 @@ class Pedido extends Model
         return $this->belongsTo(User::class, 'cliente_id');
     }
 
-    
+    public function detalles()
+{
+    return $this->hasMany(DetallePedido::class);
+}
     public function factura()
 {
     return $this->hasOne(Factura::class);

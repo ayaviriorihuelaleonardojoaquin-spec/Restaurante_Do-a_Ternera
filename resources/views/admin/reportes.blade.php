@@ -1,24 +1,24 @@
 @extends('layouts.private')
 
 @section('content')
-<div class="container">
-    <h2 class="mb-4">Reportes</h2>
+<div class="container-fluid py-4" style="background: linear-gradient(135deg, #101011ff, #131111ff); min-height: 100vh;">
+    <h2 class="mb-4 text-white">Reportes</h2>
 
-    <div class="row mb-3">
+    <div class="row mb-3 mb-4 text-white">
         <div class="col-md-3">
             <label>Fecha Inicio</label>
             <input type="date" class="form-control">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 mb-4 text-white">
             <label>Fecha Fin</label>
             <input type="date" class="form-control">
         </div>
-        <div class="col-md-3 align-self-end">
+        <div class="col-md-3 mb-4 align-self-end">
             <button class="btn btn-primary">📊 Generar Reporte</button>
         </div>
     </div>
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped bg-white">
         <thead class="table-dark">
             <tr>
                 <th>ID Pedido</th>

@@ -13,7 +13,7 @@ class PedidoController extends Controller
     public function index()
     {
         // Cargar pedidos con detalles y mesas para mostrar en la lista
-        $pedidos = Pedido::with(['detallePedidos', 'mesa'])->orderBy('created_at', 'desc')->get();
+        $pedidos = Pedido::with(['detallePedidos', 'mesa'])->orderBy('created_at', 'asc')->get();
         return view('pedidos.index', compact('pedidos'));
         
     }
@@ -34,6 +34,7 @@ class PedidoController extends Controller
         $request->validate([
             'mesa_id' => 'required|exists:mesas,id',
             'estado' => 'required|string',
+            'metodo_pago' => 'required|string|in:efectivo,transferencia,qr',
             'detalles' => 'required|array|min:1',
             'detalles.*.plato_id' => 'required|exists:platos,id',
             'detalles.*.cantidad' => 'required|integer|min:1',
@@ -53,6 +54,7 @@ class PedidoController extends Controller
                 'estado' => $request->estado,
                 'mesero_id' => $mesero_id,
                 'nombre' => $request->nombre,
+                'metodo_pago' => $request->metodo_pago,
                 'total' => 0,
             ]);
 
@@ -82,68 +84,64 @@ class PedidoController extends Controller
         $mesas = \App\Models\Mesa::all();
         $platos = \App\Models\Plato::where('disponible', true)->get();
         $pedido->load('detallePedidos');
-
+        $pedido->load('detalles');
         return view('pedidos.edit', compact('pedido', 'mesas', 'platos'));
     }
 
     // Actualizar pedido y detalles
-    public function update(Request $request, Pedido $pedido)
-    {
+   public function update(Request $request, Pedido $pedido)
+{
+    try {
+        // Validar los datos principales
         $request->validate([
-            'mesa_id' => 'required|exists:mesas,id',
+            'tipo' => 'required|string',
             'estado' => 'required|string',
+            'metodo_pago' => 'required|string',
+            'nombre' => 'nullable|string',
+            'mesa_id' => 'nullable|exists:mesas,id',
             'detalles' => 'required|array|min:1',
-            'detalles.*.id' => 'nullable|exists:detalle_pedidos,id',
             'detalles.*.plato_id' => 'required|exists:platos,id',
             'detalles.*.cantidad' => 'required|integer|min:1',
-            'detalles.*.precio' => 'required|numeric|min:0',
         ]);
 
-        DB::beginTransaction();
+        // Actualizar pedido principal
+        $pedido->update([
+            'tipo' => $request->tipo,
+            'estado' => $request->estado,
+            'metodo_pago' => $request->metodo_pago,
+            'nombre' => $request->nombre,
+            'mesa_id' => $request->mesa_id,
+        ]);
 
-        try {
-            // Actualizar pedido
-            $pedido->update([
-                'mesa_id' => $request->mesa_id,
-                'estado' => $request->estado,
+        // Eliminar los detalles anteriores
+        $pedido->detalles()->delete();
+
+        $total = 0;
+
+        // Recorrer los nuevos detalles
+        foreach ($request->detalles as $detalle) {
+            $plato = \App\Models\Plato::find($detalle['plato_id']);
+            $precio = $plato->precio;
+            $subtotal = $precio * $detalle['cantidad'];
+            $total += $subtotal;
+
+            $pedido->detalles()->create([
+                'plato_id' => $detalle['plato_id'],
+                'cantidad' => $detalle['cantidad'],
+                'precio_unitario' => $precio, // 🔥 campo obligatorio
+                'subtotal' => $subtotal,
             ]);
-
-            // Manejar detalles: actualizar existentes y crear nuevos
-            $detalleIds = [];
-
-            foreach ($request->detalles as $detalle) {
-                if (!empty($detalle['id'])) {
-                    // Actualizar detalle existente
-                    $detallePedido = DetallePedido::find($detalle['id']);
-                    $detallePedido->update([
-                        'plato_id' => $detalle['plato_id'],
-                        'cantidad' => $detalle['cantidad'],
-                        'precio' => $detalle['precio'],
-                    ]);
-                    $detalleIds[] = $detallePedido->id;
-                } else {
-                    // Crear nuevo detalle
-                    $nuevoDetalle = $pedido->detallePedidos()->create([
-                        'plato_id' => $detalle['plato_id'],
-                        'cantidad' => $detalle['cantidad'],
-                        'precio' => $detalle['precio'],
-                    ]);
-                    $detalleIds[] = $nuevoDetalle->id;
-                }
-            }
-
-            // Eliminar detalles que no estén en el request (opcional)
-            $pedido->detallePedidos()->whereNotIn('id', $detalleIds)->delete();
-
-            DB::commit();
-
-            return redirect()->route('pedidos.index')->with('success', 'Pedido actualizado correctamente.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            return back()->withErrors('Error al actualizar pedido: ' . $e->getMessage())->withInput();
         }
+
+        // Actualizar total del pedido
+        $pedido->update(['total' => $total]);
+
+        return redirect()->route('pedidos.index')->with('success', 'Pedido actualizado correctamente.');
+    } catch (\Exception $e) {
+        return back()->with('error', 'Error al actualizar pedido: ' . $e->getMessage());
     }
+}
+
 
     // Eliminar pedido junto con sus detalles
     public function destroy(Pedido $pedido)
@@ -157,6 +155,9 @@ class PedidoController extends Controller
             return back()->withErrors('Error al eliminar pedido: ' . $e->getMessage());
         }
     }
+
+    
+
 
     
 }

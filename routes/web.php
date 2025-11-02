@@ -58,7 +58,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/menu-clientes', [ClienteController::class, 'menu'])->name('clientes.menu');
     Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
     Route::get('/plato/{id}', [ClienteController::class, 'show'])->name('clientes.detalle');
-
+    
+    Route::get('/factura-cajero', [CajeroController::class, 'facturas'])->name('cajero.facturas');
+    Route::get('/cobros-cajero', [CajeroController::class, 'cobros'])->name('cajero.cobros');
+    Route::get('/cierre-cajero', [CajeroController::class, 'cierre-caja'])->name('cajero.cierre-caja');
+    Route::get('/historial-cajero', [CajeroController::class, 'historial'])->name('cajero.historial');
     // Carrito
     Route::post('/carrito/agregar/{id}', [ClienteController::class, 'agregarCarrito'])->name('carrito.agregar');
     Route::get('/carrito', [ClienteController::class, 'verCarrito'])->name('carrito.ver');
@@ -99,10 +103,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 // Cajero
-Route::prefix('cajero')->name('cajero.')->group(function () {
+Route::prefix('cajero')->name('cajero')->group(function () {
     Route::get('/cobros', [CajeroController::class, 'cobros'])->name('cobros');
     Route::get('/facturas', [CajeroController::class, 'facturas'])->name('facturas');
     Route::get('/cierre-caja', [CajeroController::class, 'cierreCaja'])->name('cierre-caja');
+    Route::get('/cajero/historial', [CajeroController::class, 'historial'])->name('cajero.historial');
+    
     Route::get('/historial', [CajeroController::class, 'historial'])->name('historial');
 });
 // Admin

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('numero');
             $table->text('descripcion')->nullable();
             $table->string('estado')->default('Activo');
+            $table->integer('capacidad')->default(1)->after('numero');
             $table->boolean('eliminado')->default(false);
             $table->timestamps();
         });
@@ -26,6 +27,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mesas');
+        Schema::table('mesas', function (Blueprint $table) {
+            $table->dropColumn('capacidad');
+        });
     }
 };

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('pedidos', function (Blueprint $table) {
             //+
-        $table->string('nombre')->nullable();
+        
         $table->string('telefono')->nullable();
         $table->string('direccion')->nullable();
         });
@@ -26,7 +26,7 @@ return new class extends Migration
     {
         Schema::table('pedidos', function (Blueprint $table) {
             //
-            $table->dropColumn(['nombre', 'telefono', 'direccion']);
+            $table->dropColumn([ 'telefono', 'direccion']);
         });
     }
 };

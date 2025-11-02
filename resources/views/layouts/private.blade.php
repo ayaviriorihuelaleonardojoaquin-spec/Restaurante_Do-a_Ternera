@@ -19,6 +19,7 @@
     <link href="{{ asset('vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -45,11 +46,11 @@
         <!--**********************************
             Nav header start
         ***********************************-->
-        <div class="nav-header" >
+        <div class="nav-header" style="background: linear-gradient( #ffffffff, #ffffffff); min-height;">
             <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="{{ asset('images/logo.png') }}" alt="">
-                <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt="">
-                <img class="brand-title" src="{{ asset('images/logo-text.png') }}" alt="">
+                <img class="w-50" src="{{ asset('images/logo.png') }}" alt="" >
+                <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt="" width="300" height="70">
+                <img class="brand-title" src="{{ asset('images/logo-text.png') }}" alt="" width="300" height="70">
             </a>
 
             <div class="nav-control">
@@ -66,7 +67,7 @@
         <!--**********************************
             Header start
         ***********************************-->
-        <div class="header" >
+        <div class="header" style="background: linear-gradient( #231961ff, #111111ff); min-height;">
             <div class="header-content">
                 
                 <nav class="navbar navbar-expand">
@@ -232,119 +233,163 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="deznav" >
-            <div class="deznav-scroll">
-                <ul class="metismenu" id="menu">
-                    @if(auth()->user()->rol?->nombre === 'Administrador')
+        <div class="deznav" style="background: linear-gradient(135deg, #ffffffff, #ffffffff); min-height: 100vh;">
+    <div class="deznav-scroll">
+        <ul class="metismenu px-2 pt-3" id="menu" style="list-style: none;">
 
-                        <li class="{{ request()->routeIs('users.*') ? 'mm-active active-no-child' : '' }}">
-                            <a href="{{ route('users.index') }}" class="ai-icon" aria-expanded="false">
-                                <i class="flaticon-381-user-7"></i>
-                                <span class="nav-text">Usuarios</span>
-                            </a>
-                        </li>
+            {{-- ADMINISTRADOR --}}
+            @if(auth()->user()->rol?->nombre === 'Administrador')
+                
 
-                        <li class="{{ request()->routeIs('roles.*') ? 'mm-active active-no-child' : '' }}">
-                            <a href="{{ route('roles.index') }}" class="ai-icon" aria-expanded="false">
-                                <i class="flaticon-381-lock-3"></i> <!-- Icono agregado para Roles -->
-                                <span class="nav-text">Roles</span>
-                            </a>
-                        </li>
+                <li class="menu-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                    <a href="{{ route('users.index') }}" class="menu-link">
+                        <i class="flaticon-381-user-7 menu-icon text-primary"></i>
+                        <span class="">Usuarios</span>
+                    </a>
+                </li>
 
-                        <li class="{{ request()->routeIs('platos.*') ? 'mm-active active-no-child' : '' }}">
-                            <a href="{{ route('platos.index') }}" class="ai-icon" aria-expanded="false">
-                                <i class="flaticon-381-notepad"></i>
-                                <span class="nav-text">Platos</span>
-                            </a>
-                            </li>
-                        
-                            <li><a href="{{ route('admin.reportes') }}" class="ai-icon" aria-expanded="false">
-                            <i class="flaticon-381-list"></i>
-                            <span class="nav-text">Reportes</span>
-                            </a></li>
-                            <li><a href="{{ route('admin.configuracion') }}" class="ai-icon" aria-expanded="false">
-                            <i class="flaticon-381-settings-2"></i>
-                            <span class="nav-text">Configuración</span>
-                            </a></li>
+                <li class="menu-item {{ request()->routeIs('roles.*') ? 'active' : '' }}">
+                    <a href="{{ route('roles.index') }}" class="menu-link">
+                        <i class="flaticon-381-lock-3 menu-icon text-primary"></i>
+                        <span class="">Roles</span>
+                    </a>
+                </li>
+
+                <li class="menu-item {{ request()->routeIs('platos.*') ? 'active' : '' }}">
+                    <a href="{{ route('platos.index') }}" class="menu-link">
+                        <i class="flaticon-381-notepad menu-icon text-primary"></i>
+                        <span class="">Platos</span>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="{{ route('admin.reportes') }}" class="menu-link">
+                        <i class="flaticon-381-list menu-icon text-primary"></i>
+                        <span class="">Reportes</span>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="{{ route('admin.configuracion') }}" class="menu-link">
+                        <i class="flaticon-381-settings-2 menu-icon text-primary"></i>
+                        <span class="">Configuración</span>
+                    </a>
+                </li>
+
+            {{-- COCINERO --}}
+            @elseif(auth()->user()->rol?->nombre === 'Cocinero')
+                
+
+                <li class="menu-item {{ request()->routeIs('pedidos.index') ? 'active' : '' }}">
+                    <a href="{{ route('pedidos.index') }}" class="menu-link">
+                        <i class="flaticon-381-list menu-icon text-primary"></i>
+                        <span>Pedidos Pendientes</span>
+                    </a>
+                </li>
+                <li class="menu-item"><a href="{{ route('cajero.historial') }}" class="menu-link"><i class="flaticon-381-archive menu-icon text-primary"></i>
+                <span class="">Historial</span></a></li>
+                
+                
+
+                
+
+            {{-- CAJERO --}}
+            @elseif(auth()->user()->rol?->nombre === 'Cajero')
+                
+                <li class="menu-item"><a href="{{ route('cajero.facturas') }}" class="menu-link"><i class="flaticon-381-file menu-icon text-primary"></i>
+                <span class="">Ficha de pedidos</span></a></li>
+
+                <li class="menu-item"><a href="{{ route('cajero.historial') }}" class="menu-link"><i class="flaticon-381-archive menu-icon text-primary"></i>
+                <span class="">Historial</span></a></li>
+                
+            {{-- MESERO --}}
+            @elseif(auth()->user()->rol?->nombre === 'Mesero')
+                
+
+                <li class="menu-item"><a href="{{ route('pedidos.index') }}" class="menu-link"><i class="flaticon-381-edit menu-icon text-primary"></i>
+                <span>Tomar Pedido</span></a></li>
+                <li class="menu-item {{ request()->routeIs('mesas.*') ? 'active' : '' }}"><a href="{{ route('mesas.index') }}" class="menu-link"><i class="flaticon-381-presentation menu-icon text-primary"></i>
+                <span>Mesas</span></a></li>
+                
+                
+
+            {{-- CLIENTE --}}
+            @elseif(auth()->user()->rol?->nombre === 'Cliente')
+                <li class="menu-section-title text-center mb-3 text-uppercase fw-bold text-secondary">
+                    <i class="fa fa-utensil-spoon me-2"></i> Menú del Día
+                </li>
+                <li class="menu-item"><a href="{{ route('clientes.index') }}" class="menu-link"><i class="flaticon-381-edit menu-icon text-primary"></i>
+                <span>Menú</span></a></li>
+            @endif
+        </ul>
+    </div>
+</div>
+{{-- 🎨 Estilos personalizados --}}
+<style>
+    .menu-item {
+        background: #111111ff;
+        border-radius: 14px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        margin-bottom: 12px;
+        transition: all 0.25s ease-in-out;
+        overflow: hidden;
+    }
+
+    .menu-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    .menu-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #d1d5db;
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;      /* 🔹 Evita que el texto salte de línea */
+    overflow: hidden;         /* 🔹 Oculta si se pasa del ancho */
+    text-overflow: ellipsis;  /* 🔹 (Opcional) agrega "..." si se recorta */
+}
 
 
+    .menu-link:hover {
+        background-color: #1f2937;   
+        color: #ffffff;
+        transform: scale(1.02);
+    }
 
-                        @elseif(auth()->user()->rol?->nombre === 'Cocinero')
+    .menu-link .menu-icon {
+        font-size: 1.3rem;           
+        color: #2563eb;              
+        transition: transform 0.2s;
+    }
 
-                        <!-- Pedidos asignados al Cocinero -->
-                        <li class="{{ request()->routeIs('pedidos.index') ? 'mm-active active-no-child' : '' }}">
-                        <a href="{{ route('pedidos.index') }}" class="ai-icon" aria-expanded="false">
-                        <i class="flaticon-381-list"></i>
-                         <span class="nav-text">Pedidos Pendientes</span>
-                        </a>
-                        </li>
+    .menu-link:hover .menu-icon {
+        transform: rotate(-10deg) scale(1.1);
+    }
 
-                        <!-- Pedidos ya preparados -->
-                        <li class="{{ request()->routeIs('pedidos.preparados') ? 'mm-active active-no-child' : '' }}">
-                      <a href="{{ route('pedidos.preparados') }}" class="ai-icon" aria-expanded="false">
-                        <i class="flaticon-381-success"></i>
-                       <span class="nav-text">Pedidos Preparados</span>
-                        </a>
-                     </li>
+    /* 🔹 MENÚ ACTIVO: color de fondo y borde más visibles */
+    .menu-item.active {
+        background-color: #2563eb !important; /* Azul intenso */
+        border: 2px solid #1d4ed8;
+    }
 
-                        <!-- Historial de pedidos (opcional) -->
-                        <li class="{{ request()->routeIs('pedidos.historial') ? 'mm-active active-no-child' : '' }}">
-                        <a href="{{ route('pedidos.historial') }}" class="ai-icon" aria-expanded="false">
-                        <i class="flaticon-381-clock"></i>
-                        <span class="nav-text">Historial</span>
-                        </a>
-                        </li>
+    .menu-section-title {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        color: #6b7280;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+    }
 
+    .deznav-scroll {
+        padding-bottom: 30px;
+    }
+</style>
 
-                        @elseif(auth()->user()->rol?->nombre === 'Cajero')
-
-                        <li><a href="{{ route('cajero.cobros') }}" class="ai-icon">
-                        <i class="flaticon-381-calculator"></i>
-                        <span class="nav-text">Cobros</span>
-                        </a></li>
-                        <li><a href="{{ route('cajero.facturas') }}" class="ai-icon">
-                        <i class="flaticon-381-calculator"></i>
-                        <span class="nav-text">Facturas</span>
-                        </a></li>
-                        <li><a href="{{ route('cajero.cierre-caja') }}" class="ai-icon">
-                        <i class="flaticon-381-calculator"></i>
-                        <span class="nav-text">Cierre de Caja</span>
-                        </a></li>
-                        <li><a href="{{ route('cajero.historial') }}" class="ai-icon">
-                        <i class="flaticon-381-file"></i>
-                        <span class="nav-text">Historial</span>
-                        </a></li>
-
-
-                        @elseif(auth()->user()->rol?->nombre === 'Mesero')
-                        <li><a href="{{ route('pedidos.index') }}" class="ai-icon" aria-expanded="false">
-                                <i class="flaticon-381-edit"></i>
-                                <span class="nav-text">Tomar Pedido</span>
-                            </a></li>
-                        <li class="{{ request()->routeIs('mesas.*') ? 'mm-active active-no-child' : '' }}"><a href="{{ route('mesas.index') }}" class="ai-icon" aria-expanded="false">
-                                <i class="flaticon-381-presentation"></i>
-                                <span class="nav-text">Mesas</span>
-                            </a></li>
-                        <li><a href="#" class="ai-icon" aria-expanded="false">
-                                <i class="flaticon-381-repeat"></i>
-                                <span class="nav-text">Estado de Pedidos</span>
-                            </a></li>
-                        <li><a href="#" class="ai-icon" aria-expanded="false">
-                                <i class="flaticon-381-database"></i>
-                                <span class="nav-text">Historial</span>
-                            </a></li>
-
-                        @elseif(auth()->user()->rol?->nombre === 'Cliente')
-                        {{-- Código para clientes --}}
-                        <li><a href="{{ route('clientes.index') }}" class="ai-icon" aria-expanded="false">
-                                <i class="flaticon-381-edit"></i>
-                                <span class="nav-text">Menu</span>
-                            </a></li>
-                        
-                    @endif
-                </ul>
-            </div>
-        </div>
         <!--**********************************
             Sidebar end
         ***********************************-->

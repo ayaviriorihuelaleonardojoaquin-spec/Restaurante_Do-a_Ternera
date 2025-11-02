@@ -34,4 +34,6 @@ class FacturaController extends Controller
 
         return redirect()->route('cajero.facturas.index')->with('success', 'Factura generada correctamente.');
     }
+
+    
 }

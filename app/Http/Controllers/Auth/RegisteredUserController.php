@@ -28,6 +28,7 @@ class RegisteredUserController extends Controller
         // Crear usuario y asignar rol "Cliente"
         $user = User::create([
             'name' => $request->name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'rol_id' => Rol::where('nombre', 'Cliente')->first()->id,
