@@ -6,7 +6,7 @@
     <div class="row page-titles mx-0">
         <div class="col-sm-6 p-md-0">
             <div class="welcome-text">
-                <h4 class="text-primary fw-bold">✏️ Editar Usuario</h4>
+                <h4 class="text-primary fw-bold">Editar Usuario</h4>
                 <span class="text-muted">Modifica los datos del usuario seleccionado</span>
             </div>
         </div>

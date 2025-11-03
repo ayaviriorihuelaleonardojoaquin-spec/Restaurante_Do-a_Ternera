@@ -357,7 +357,7 @@
 
 
     .menu-link:hover {
-        background-color: #1f2937;   
+        background-color: #484c50ff;   
         color: #ffffff;
         transform: scale(1.02);
     }
@@ -374,8 +374,8 @@
 
     /* 🔹 MENÚ ACTIVO: color de fondo y borde más visibles */
     .menu-item.active {
-        background-color: #2563eb !important; /* Azul intenso */
-        border: 2px solid #1d4ed8;
+        background-color: #eef0f5ff !important; /* Azul intenso */
+        border: 2px solid #1d4ed8 ;
     }
 
     .menu-section-title {

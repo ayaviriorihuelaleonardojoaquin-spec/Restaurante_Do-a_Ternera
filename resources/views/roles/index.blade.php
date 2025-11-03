@@ -38,7 +38,7 @@
                             <thead class="bg-black text-white">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nombre</th>
+                                    <th>Rol</th>
                                     <th>Descripción</th>
                                     <th>Acciones</th>
                                 </tr>

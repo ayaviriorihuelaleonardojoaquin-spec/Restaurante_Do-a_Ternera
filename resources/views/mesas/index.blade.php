@@ -39,6 +39,7 @@
                         <table id="tablaMesas" class="table table-bordered align-middle text-center text-white shadow-sm" style="min-width: 845px; border-radius: 12px; overflow: hidden;">
                             <thead class="table-dark text-white">
                                 <tr>
+                                    <th>ID</th>
                                     <th>Número</th>
                                     <th>Capacidad</th>
                                     <th>Estado</th>
@@ -47,16 +48,18 @@
                             </thead>
                             <tbody>
                                 @foreach ($mesas as $mesa)
-                                    <tr>
+                                    
+                                    <tr class="mesa-row text-secondary">
+                                        <td>{{ $mesa->id }}</td>
                                         <td class="fw-semibold text-dark">{{ $mesa->numero }}</td>
                                         <td class="fw-semibold text-dark">{{ $mesa->capacidad }} personas</td>
                                         <td>
                                             @if($mesa->estado == 'libre')
-                                                <span class="badge bg-success px-3 py-2 fs-6">Libre</span>
+                                                <span class="badge bg-success px-3 py-2 fs-6 text-white">Libre</span>
                                             @elseif($mesa->estado == 'ocupada')
                                                 <span class="badge bg-warning text-white px-3 py-2 fs-6">Ocupada</span>
                                             @else
-                                                <span class="badge bg-info px-3 py-2 fs-6">Reservada</span>
+                                                <span class="badge bg-info px-3 py-2 fs-6 text-white">Reservada</span>
                                             @endif
                                         </td>
                                         <td>
